@@ -50,7 +50,7 @@ body::after{
     justify-content:center;
     align-items:center;
     gap:80px;
-    padding:0 10%;
+    padding:0 10% 80px;
     position:relative;
 }
 .hero-image{
@@ -60,6 +60,7 @@ body::after{
     overflow:hidden;
     border:1px solid rgba(165,56,96,.25);
     box-shadow:0 0 40px rgba(165,56,96,.3);
+    flex-shrink:0;
 }
 .hero-image img{
     width:100%;
@@ -100,29 +101,14 @@ body::after{
     border:1px solid rgba(165,56,96,.35);
     color:white;
     display:inline-block;
+    margin-top:20px;
 }
 .btn-secondary:hover{
     background:rgba(165,56,96,.1);
     border-color:#a53860;
 }
 
-/* ── SCROLL ── */
-.scroll-indicator{
-    position:absolute;
-    bottom:30px;
-    left:50%;
-    transform:translateX(-50%);
-    text-decoration:none;
-    color:#a53860;
-    text-align:center;
-    animation:bounce 2s infinite;
-}
-.scroll-indicator span{
-    display:block;
-    font-size:.8rem;
-    letter-spacing:2px;
-    margin-bottom:8px;
-}
+
 .arrow{
     width:15px;
     height:15px;
@@ -161,6 +147,7 @@ body::after{
     justify-content:center;
     align-items:center;
     font-size:1.4rem;
+    flex-shrink:0;
 }
 .section-info small{
     display:block;
@@ -189,8 +176,6 @@ body::after{
     color:#a53860;
     font-weight:600;
 }
-
-/* secondary accent — rosa acinzentado */
 .green{
     color:#d4748f;
     font-weight:600;
@@ -233,20 +218,6 @@ body::after{
 @keyframes bounce{
     0%,100%{ transform:translateX(-50%) translateY(0); }
     50%     { transform:translateX(-50%) translateY(10px); }
-}
-
-/* ── RESPONSIVO ── */
-@media(max-width:1000px){
-    .hero{
-        flex-direction:column;
-        text-align:center;
-        padding:50px 30px;
-    }
-    .hero-content h1{ font-size:3.5rem; }
-    .hero-image{ width:250px; height:250px; }
-    .about-container{ grid-template-columns:1fr; }
-    .section-info h2{ font-size:2.3rem; }
-    .about-text p{ font-size:1rem; }
 }
 
 /* ── SLIDE 03 — CURIOSIDADES ── */
@@ -292,12 +263,6 @@ body::after{
     color:#a08890;
     line-height:1.8;
     font-size:1rem;
-}
-@media(max-width:1100px){
-    .curiosities-grid{ grid-template-columns:1fr 1fr; }
-}
-@media(max-width:700px){
-    .curiosities-grid{ grid-template-columns:1fr; }
 }
 
 /* ── SLIDE 04 — TIMELINE ── */
@@ -345,8 +310,6 @@ body::after{
     font-size:.85rem;
     font-weight:600;
 }
-
-/* tags recoloridas para a paleta */
 .trabalho{
     background:rgba(212,116,143,.12);
     color:#d4748f;
@@ -359,7 +322,6 @@ body::after{
     background:rgba(230,160,120,.1);
     color:#e0a07a;
 }
-
 .subtitle-card{
     color:#a53860 !important;
     margin-bottom:10px;
@@ -432,9 +394,6 @@ body::after{
     font-size:.9rem;
     font-weight:500;
 }
-@media(max-width:1000px){
-    .projects-grid{ grid-template-columns:1fr; }
-}
 
 /* ── SLIDE 06 — ENCERRAMENTO ── */
 .final-slide{
@@ -492,114 +451,137 @@ body::after{
     box-shadow:0 0 28px rgba(165,56,96,.5);
     background:#bf4470;
 }
-@media(max-width:768px){
-    .final-content h2{ font-size:2.5rem; }
-}
+
+/* ── REVEAL ── */
 .reveal{
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity .8s ease, transform .8s ease;
+    opacity:0;
+    transform:translateY(30px);
+    transition:opacity .8s ease, transform .8s ease;
+}
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
 }
 
-.reveal.active{
-    opacity: 1;
-    transform: translateY(0);
+/* ══════════════════════════
+   RESPONSIVO
+══════════════════════════ */
+
+/* Tablet largo */
+@media(max-width:1100px){
+    .hero{ gap:50px; }
+    .hero-content h1{ font-size:4rem; }
+    .curiosities-grid{ grid-template-columns:1fr 1fr; }
+    .section-info h2{ font-size:2.5rem; }
 }
-/* ── RESPONSIVO EXTRA ── */
-@media(max-width:1000px){
+
+/* Tablet */
+@media(max-width:900px){
+    .hero{
+        flex-direction:column;
+        text-align:center;
+        padding:100px 8% 60px;
+        gap:40px;
+    }
+    .hero-image{
+        width:220px;
+        height:220px;
+    }
+    .hero-content h1{ font-size:3.2rem; }
+    .description{ font-size:1rem; }
     .about-modern{
-        padding:40px 6%;
+        padding:50px 8%;
+        min-height:unset;
     }
     .about-container{
         grid-template-columns:1fr;
+        gap:40px;
     }
-    .about-left-full{
-        padding:0;
+    .about-cards{
+        flex-direction:row;
+        flex-wrap:wrap;
     }
-    .section-info h2{
-        font-size:2.3rem;
+    .info-card{
+        flex:1 1 calc(50% - 9px);
     }
-    .about-text p{
-        font-size:1rem;
-    }
-    .curiosities-grid{
-        grid-template-columns:1fr 1fr;
-    }
-    .projects-grid{
-        grid-template-columns:1fr;
-    }
-    .timeline-content h3{
-        font-size:1.4rem;
-    }
-    .final-content h2{
-        font-size:2.8rem;
-    }
-    .final-content p{
-        font-size:1rem;
-    }
+    .section-info h2{ font-size:2rem; }
+    .section-header{ margin-bottom:30px; }
+    .projects-grid{ grid-template-columns:1fr; }
+    .final-content h2{ font-size:2.8rem; }
 }
 
-@media(max-width:700px){
-    .about-modern{
-        padding:30px 5%;
+/* Mobile */
+@media(max-width:600px){
+    .hero{
+        padding:90px 6% 50px;
     }
-    .section-info h2{
-        font-size:1.8rem;
+    .hero-image{
+        width:180px;
+        height:180px;
+    }
+    .hero-content h1{ font-size:2.5rem; }
+    .subtitle{ font-size:.8rem; letter-spacing:2px; }
+    .description{ font-size:.95rem; }
+    .btn-secondary{
+        padding:12px 24px;
+        font-size:.9rem;
+    }
+    .about-modern{
+        padding:40px 6%;
+    }
+    .about-cards{
+        flex-direction:column;
+    }
+    .info-card{
+        flex:unset;
     }
     .section-icon{
         width:48px;
         height:48px;
         font-size:1.1rem;
     }
-    .curiosities-grid{
-        grid-template-columns:1fr;
+    .section-info h2{ font-size:1.7rem; }
+    .about-text{ gap:20px; }
+    .about-text p{ font-size:.95rem; }
+    .curiosities-grid{ grid-template-columns:1fr; }
+    .curiosity-card{ padding:22px; }
+    .curiosity-icon{
+        width:44px;
+        height:44px;
+        font-size:1.1rem;
+        margin-bottom:16px;
     }
-    .timeline-item{
-        flex-direction:column;
-        gap:12px;
-    }
+    .curiosity-card h3{ font-size:1.2rem; }
+    .timeline{ gap:28px; }
+    .timeline-item{ gap:16px; }
     .timeline-icon{
-        width:48px;
-        height:48px;
+        width:46px;
+        height:46px;
+        font-size:1.1rem;
     }
-    .timeline-content h3{
-        font-size:1.2rem;
-    }
-    .project-card h3{
-        font-size:1.4rem;
-    }
-    .final-content h2{
-        font-size:2rem;
-    }
-    .info-card{
-        flex-wrap:wrap;
+    .timeline-content h3{ font-size:1.2rem; }
+    .timeline-content p{ font-size:.9rem; }
+    .project-card{ padding:22px; }
+    .project-card h3{ font-size:1.3rem; }
+    .project-card p{ font-size:.9rem; }
+    .project-tags span{ font-size:.8rem; padding:6px 12px; }
+    .final-slide{ padding:60px 6%; }
+    .final-content h2{ font-size:2rem; }
+    .final-content p{ font-size:.95rem; }
+    .btn-final{
+        padding:12px 28px;
+        font-size:.9rem;
     }
 }
 
-@media(max-width:480px){
-    .about-modern{
-        padding:25px 4%;
+/* Mobile pequeno */
+@media(max-width:380px){
+    .hero-content h1{ font-size:2rem; }
+    .hero-image{
+        width:150px;
+        height:150px;
     }
-    .section-info h2{
-        font-size:1.5rem;
-    }
-    .about-text p{
-        font-size:.95rem;
-    }
-    .curiosity-card{
-        padding:20px;
-    }
-    .project-card{
-        padding:20px;
-    }
-    .final-content h2{
-        font-size:1.6rem;
-    }
-    .final-content p{
-        font-size:.95rem;
-    }
-    .btn-final{
-        padding:12px 24px;
-        font-size:.9rem;
-    }
+    .section-info h2{ font-size:1.4rem; }
+    .final-content h2{ font-size:1.6rem; }
+    .tag{ font-size:.75rem; padding:5px 10px; }
 }
